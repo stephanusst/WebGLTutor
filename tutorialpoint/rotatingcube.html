@@ -12,18 +12,18 @@
 		 
          var vertices = [
             -1,-1,-1,  1,-1,-1,  1, 1,-1, -1, 1,-1,
-            -1,-1, 1,  1,-1, 1,  1, 1, 1, -1, 1, 1,	//depan
+            -1,-1, 1,  1,-1, 1,  1, 1, 1, -1, 1, 1,//depan
             -1,-1,-1, -1, 1,-1, -1, 1, 1, -1,-1, 1,
-             1,-1,-1,  1, 1,-1,  1, 1, 1,  1,-1, 1, //kanan
+             1,-1,-1,  1, 1,-1,  1, 1, 1,  1,-1, 1,//kanan
             -1,-1,-1, -1,-1, 1,  1,-1, 1,  1,-1,-1,
             -1, 1,-1, -1, 1, 1,  1, 1, 1,  1, 1,-1, 
          ];
 
          var colors = [
             1,0,0, 0,1,0, 0,0,1, 0,1,1,
-            1,0,0, 1,0,1, 0,0,1, 1,0,1,	//depan
+            1,0,0, 1,0,1, 0,0,1, 1,0,1,//depan
             0,0,1, 0,0,1, 0,0,1, 0,0,1,
-            1,1,0, 1,1,1, 0,1,1, 1,1,1, //kanan
+            1,1,0, 1,1,1, 0,1,1, 1,1,1,//kanan
             1,0,0, 1,1,0, 1,1,0, 1,1,0, 
             0,1,0, 0,1,0, 0,1,0, 1,1,1
          ];
@@ -61,7 +61,7 @@
             'void main(void) { '+//pre-built function
                'gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position, 1.);'+
                'vColor = color;'+
-			   'gl_PointSize = 30.0;'+
+	       'gl_PointSize = 30.0;'+
             '}';
 
          var fragCode = 'precision mediump float;'+
@@ -103,7 +103,6 @@
          gl.useProgram(shaderProgram);
 
          /*==================== MATRIX =====================*/
-
          function get_projection(angle, a, zMin, zMax) {
             var ang = Math.tan((angle*.5)*Math.PI/180);//angle*.5
             return [
@@ -115,7 +114,6 @@
          }
 
          var proj_matrix = get_projection(40, canvas.width/canvas.height, 1, 100);
-
          var mov_matrix =  [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
          var view_matrix = [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
 
@@ -129,9 +127,9 @@
             var s = Math.sin(angle);
             var mv0 = m[0], mv4 = m[4], mv8 = m[8];
 
-            m[0] = c*m[0]-s*m[1];
-            m[4] = c*m[4]-s*m[5];
-            m[8] = c*m[8]-s*m[9];
+            m[0]= c*m[0]-s*m[1];
+            m[4]= c*m[4]-s*m[5];
+            m[8]= c*m[8]-s*m[9];
 
             m[1]=c*m[1]+s*mv0;
             m[5]=c*m[5]+s*mv4;
@@ -147,8 +145,8 @@
             m[5] = m[5]*c-m[6]*s;
             m[9] = m[9]*c-m[10]*s;
 
-            m[2] = m[2]*c+mv1*s;
-            m[6] = m[6]*c+mv5*s;
+            m[2]  = m[2]*c+mv1*s;
+            m[6]  = m[6]*c+mv5*s;
             m[10] = m[10]*c+mv9*s;
          }
 
